@@ -15,7 +15,6 @@ Segment segment = new Segment(0, 1000, myData);
 int threads = 4;
 SegmentTask task = new SegmentTask(segment, threads, new MyDataTaskHandler());
 ForkJoinPool forkJoinPool = new ForkJoinPool();
-long start = System.currentTimeMillis();
 Future<List<SegmentTask>> result = forkJoinPool.submit(task);
 
 // 指定每个线程的大小（不指定线程数）
@@ -24,7 +23,6 @@ Segment segment = new Segment(0, 1000, myData);
 long threadSegmentSize = 1600;
 SegmentTask task = new SegmentTask(segment, threadSegmentSize, new MyDataTaskHandler());
 ForkJoinPool forkJoinPool = new ForkJoinPool();
-long start = System.currentTimeMillis();
 Future<List<SegmentTask>> result = forkJoinPool.submit(task);
 
 // 多段不连续处理
@@ -37,7 +35,6 @@ segments.add(segment2);
 int threads = 4;
 SegmentTask task = new SegmentTask(segments, threads, new MyDataTaskHandler());
 ForkJoinPool forkJoinPool = new ForkJoinPool();
-long start = System.currentTimeMillis();
 Future<List<SegmentTask>> result = forkJoinPool.submit(task);
 ```
 
