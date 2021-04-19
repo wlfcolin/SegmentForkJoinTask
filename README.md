@@ -16,6 +16,17 @@ int threads = 4;
 SegmentTask task = new SegmentTask(segment, threads, new MyDataTaskHandler());
 ForkJoinPool forkJoinPool = new ForkJoinPool();
 Future<List<SegmentTask>> result = forkJoinPool.submit(task);
+List<SegmentTask> tasks = result.get();
+boolean isFullySuccess = SegmentTaskUtil.isFullySuccess(tasks);
+log.debug("--------所有任务是否完全成功，isFullySuccess=" + isFullySuccess + "--------");
+List<Segment> successHandledSegments = SegmentTaskUtil.successHandledSegments(tasks);
+log.debug("--------所有任务成功的分段，successHandledSegments=" + successHandledSegments + "--------");
+List<Segment> errorHandledSegments = SegmentTaskUtil.errorHandledSegments(tasks);
+log.debug("--------所有任务失败的分段，errorHandledSegments=" + errorHandledSegments + "--------");
+List<Exception> exceptions = SegmentTaskUtil.exceptions(tasks);
+log.debug("--------所有任务出现的异常，exceptions=" + exceptions + "--------");
+Map<Segment, Exception> errorHandleSegmentExceptions = SegmentTaskUtil.errorHandleSegmentExceptions(tasks);
+log.debug("--------所有任务失败的分段详情，errorHandleSegmentExceptions=" + errorHandleSegmentExceptions + "--------");
 
 // 指定每个线程的大小（不指定线程数）
 Object myData = new Object();
@@ -24,6 +35,17 @@ long threadSegmentSize = 1600;
 SegmentTask task = new SegmentTask(segment, threadSegmentSize, new MyDataTaskHandler());
 ForkJoinPool forkJoinPool = new ForkJoinPool();
 Future<List<SegmentTask>> result = forkJoinPool.submit(task);
+List<SegmentTask> tasks = result.get();
+boolean isFullySuccess = SegmentTaskUtil.isFullySuccess(tasks);
+log.debug("--------所有任务是否完全成功，isFullySuccess=" + isFullySuccess + "--------");
+List<Segment> successHandledSegments = SegmentTaskUtil.successHandledSegments(tasks);
+log.debug("--------所有任务成功的分段，successHandledSegments=" + successHandledSegments + "--------");
+List<Segment> errorHandledSegments = SegmentTaskUtil.errorHandledSegments(tasks);
+log.debug("--------所有任务失败的分段，errorHandledSegments=" + errorHandledSegments + "--------");
+List<Exception> exceptions = SegmentTaskUtil.exceptions(tasks);
+log.debug("--------所有任务出现的异常，exceptions=" + exceptions + "--------");
+Map<Segment, Exception> errorHandleSegmentExceptions = SegmentTaskUtil.errorHandleSegmentExceptions(tasks);
+log.debug("--------所有任务失败的分段详情，errorHandleSegmentExceptions=" + errorHandleSegmentExceptions + "--------");
 
 // 多段不连续处理
 Object myData = new Object();
@@ -36,6 +58,17 @@ int threads = 4;
 SegmentTask task = new SegmentTask(segments, threads, new MyDataTaskHandler());
 ForkJoinPool forkJoinPool = new ForkJoinPool();
 Future<List<SegmentTask>> result = forkJoinPool.submit(task);
+List<SegmentTask> tasks = result.get();
+boolean isFullySuccess = SegmentTaskUtil.isFullySuccess(tasks);
+log.debug("--------所有任务是否完全成功，isFullySuccess=" + isFullySuccess + "--------");
+List<Segment> successHandledSegments = SegmentTaskUtil.successHandledSegments(tasks);
+log.debug("--------所有任务成功的分段，successHandledSegments=" + successHandledSegments + "--------");
+List<Segment> errorHandledSegments = SegmentTaskUtil.errorHandledSegments(tasks);
+log.debug("--------所有任务失败的分段，errorHandledSegments=" + errorHandledSegments + "--------");
+List<Exception> exceptions = SegmentTaskUtil.exceptions(tasks);
+log.debug("--------所有任务出现的异常，exceptions=" + exceptions + "--------");
+Map<Segment, Exception> errorHandleSegmentExceptions = SegmentTaskUtil.errorHandleSegmentExceptions(tasks);
+log.debug("--------所有任务失败的分段详情，errorHandleSegmentExceptions=" + errorHandleSegmentExceptions + "--------");
 ```
 
 详细使用见：[SegmentTaskTest.java](https://gitee.com/wlfcolin_admin/SegmentForkJoinTask/blob/master/segment-forkjointask/src/test/java/me/andy5/segment_forkjointask/SegmentTaskTest.java)

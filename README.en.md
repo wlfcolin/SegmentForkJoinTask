@@ -14,6 +14,17 @@ int threads = 4;
 SegmentTask task = new SegmentTask(segment, threads, new MyDataTaskHandler());
 ForkJoinPool forkJoinPool = new ForkJoinPool();
 Future<List<SegmentTask>> result = forkJoinPool.submit(task);
+List<SegmentTask> tasks = result.get();
+boolean isFullySuccess = SegmentTaskUtil.isFullySuccess(tasks);
+log.debug("--------Whether all tasks completely successful, isFullySuccess=" + isFullySuccess + "--------");
+List<Segment> successHandledSegments = SegmentTaskUtil.successHandledSegments(tasks);
+log.debug("--------Successful segments of all tasks, successHandledSegments=" + successHandledSegments + "--------");
+List<Segment> errorHandledSegments = SegmentTaskUtil.errorHandledSegments(tasks);
+log.debug("--------Failed segments of all tasks, errorHandledSegments=" + errorHandledSegments + "--------");
+List<Exception> exceptions = SegmentTaskUtil.exceptions(tasks);
+log.debug("--------Exceptions of all tasks, exceptions=" + exceptions + "--------");
+Map<Segment, Exception> errorHandleSegmentExceptions = SegmentTaskUtil.errorHandleSegmentExceptions(tasks);
+log.debug("--------Exception segment details of all tasks, errorHandleSegmentExceptions=" + errorHandleSegmentExceptions + "--------");
 
 // Specify the size of each thread (do not specify the number of threads)
 Object myData = new Object();
@@ -22,6 +33,17 @@ long threadSegmentSize = 1600;
 SegmentTask task = new SegmentTask(segment, threadSegmentSize, new MyDataTaskHandler());
 ForkJoinPool forkJoinPool = new ForkJoinPool();
 Future<List<SegmentTask>> result = forkJoinPool.submit(task);
+List<SegmentTask> tasks = result.get();
+boolean isFullySuccess = SegmentTaskUtil.isFullySuccess(tasks);
+log.debug("--------Whether all tasks completely successful, isFullySuccess=" + isFullySuccess + "--------");
+List<Segment> successHandledSegments = SegmentTaskUtil.successHandledSegments(tasks);
+log.debug("--------Successful segments of all tasks, successHandledSegments=" + successHandledSegments + "--------");
+List<Segment> errorHandledSegments = SegmentTaskUtil.errorHandledSegments(tasks);
+log.debug("--------Failed segments of all tasks, errorHandledSegments=" + errorHandledSegments + "--------");
+List<Exception> exceptions = SegmentTaskUtil.exceptions(tasks);
+log.debug("--------Exceptions of all tasks, exceptions=" + exceptions + "--------");
+Map<Segment, Exception> errorHandleSegmentExceptions = SegmentTaskUtil.errorHandleSegmentExceptions(tasks);
+log.debug("--------Exception segment details of all tasks, errorHandleSegmentExceptions=" + errorHandleSegmentExceptions + "--------");
 
 // Multiple segments processing
 Object myData = new Object();
@@ -34,6 +56,17 @@ int threads = 4;
 SegmentTask task = new SegmentTask(segments, threads, new MyDataTaskHandler());
 ForkJoinPool forkJoinPool = new ForkJoinPool();
 Future<List<SegmentTask>> result = forkJoinPool.submit(task);
+List<SegmentTask> tasks = result.get();
+boolean isFullySuccess = SegmentTaskUtil.isFullySuccess(tasks);
+log.debug("--------Whether all tasks completely successful, isFullySuccess=" + isFullySuccess + "--------");
+List<Segment> successHandledSegments = SegmentTaskUtil.successHandledSegments(tasks);
+log.debug("--------Successful segments of all tasks, successHandledSegments=" + successHandledSegments + "--------");
+List<Segment> errorHandledSegments = SegmentTaskUtil.errorHandledSegments(tasks);
+log.debug("--------Failed segments of all tasks, errorHandledSegments=" + errorHandledSegments + "--------");
+List<Exception> exceptions = SegmentTaskUtil.exceptions(tasks);
+log.debug("--------Exceptions of all tasks, exceptions=" + exceptions + "--------");
+Map<Segment, Exception> errorHandleSegmentExceptions = SegmentTaskUtil.errorHandleSegmentExceptions(tasks);
+log.debug("--------Exception segment details of all tasks, errorHandleSegmentExceptions=" + errorHandleSegmentExceptions + "--------");
 ```
 
 For detailed usage, see: [SegmentTaskTest.java](https://gitee.com/wlfcolin_admin/SegmentForkJoinTask/blob/master/segment-forkjointask/src/test/java/me/andy5/segment_forkjointask/SegmentTaskTest.java)
